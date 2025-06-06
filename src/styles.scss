@@ -1,1 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@import "primeicons/primeicons.css";
+
+* {
+  font-family: sans-serif;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  padding: 20px;
+}
+
+.image-card {
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.card-ratio {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 */
+  background-size: cover;
+  background-position: center;
+}
+
+.card-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  color: white;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  width: 100%;
+}
+
+::ng-deep .p-card-body {
+  padding: 0 !important;
+}
+
+.p-card-body {
+  padding: 0 !important;
+}

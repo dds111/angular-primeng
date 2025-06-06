@@ -1,0 +1,39 @@
+<p-toolbar>
+  <div class="p-toolbar-group-left" style="display: flex; gap: 1rem; align-items: center;">
+    <!-- Search input -->
+    <span class="p-input-icon-left">
+      <input pInputText [(ngModel)]="query" placeholder="Search..." />
+    </span>
+
+    <!-- Genre dropdown -->
+    <p-dropdown [options]="genres" [(ngModel)]="selectedGenreId" optionLabel="name" optionValue="id" placeholder="Genre"
+      [showClear]="true" styleClass="p-dropdown-sm"></p-dropdown>
+
+    <!-- Year dropdown -->
+    <p-dropdown [options]="yearOptions" [(ngModel)]="selectedYear" placeholder="Year" [showClear]="true"
+      styleClass="p-dropdown-sm"></p-dropdown>
+
+    <!-- Search button -->
+    <button pButton type="button" label="Search" icon="pi pi-search" (click)="loadData(1)"></button>
+
+  </div>
+</p-toolbar>
+
+
+<div class="card-container">
+  <p-card *ngFor="let movie of movies()" class="image-card">
+    <ng-template pTemplate="content">
+      <div class="card-ratio" [ngStyle]="{
+          'background-image': 'url(https://image.tmdb.org/t/p/w780' + movie.backdrop_path + ')'
+        }">
+        <div class="card-text">
+          <h3>{{ movie.title }}</h3>
+          <p>{{ movie.release_date?.slice(0, 4) }}</p>
+        </div>
+      </div>
+    </ng-template>
+  </p-card>
+</div>
+
+<p-paginator *ngIf="totalRecords > pageSize" [rows]="pageSize" [totalRecords]="totalRecords" [first]="first"
+  (onPageChange)="onPageChange($event)"></p-paginator>
